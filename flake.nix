@@ -17,8 +17,6 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          name = "rust-env";
-
           nativeBuildInputs = [ toolchain ];
         };
       }
