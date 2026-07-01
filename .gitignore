@@ -1,1 +1,5 @@
+# Rust build output
 target
+
+# direnv cache
+.direnv
