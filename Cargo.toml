@@ -1,3 +1,6 @@
+[workspace]
+members = ["mono_core"]
+
 [package]
 name = "mono"
 version = "0.1.0"
