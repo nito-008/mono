@@ -3,3 +3,6 @@ target
 
 # direnv cache
 .direnv
+
+# Build files for wasabi
+build
