@@ -7,3 +7,4 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+noli = { git = "https://github.com/hikalium/wasabi.git", branch = "for_saba"}
