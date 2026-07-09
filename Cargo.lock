@@ -70,12 +70,22 @@ checksum = "c3c8dda44ff03a2f238717214da50f65d5a53b45cd213a7370424ffdb6fae815"
 name = "mono"
 version = "0.1.0"
 dependencies = [
+ "mono_core",
+ "net_wasabi",
  "noli",
 ]
 
 [[package]]
 name = "mono_core"
 version = "0.1.0"
+
+[[package]]
+name = "net_wasabi"
+version = "0.1.0"
+dependencies = [
+ "mono_core",
+ "noli",
+]
 
 [[package]]
 name = "noli"
