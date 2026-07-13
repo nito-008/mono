@@ -1,10 +1,23 @@
 [workspace]
-members = ["mono_core"]
+members = ["mono_core", "net/wasabi"]
 
 [package]
+authors = ["nito-008"]
 name = "mono"
 version = "0.1.0"
 edition = "2021"
+default-run = "mono"
+
+[features]
+default = ["wasabi"]
+wasabi = ["dep:net_wasabi", "dep:noli"]
+
+[[bin]]
+name = "mono"
+path = "src/main.rs"
+required-features = ["wasabi"]
 
 [dependencies]
-noli = { git = "https://github.com/hikalium/wasabi.git", branch = "for_saba"}
+mono_core = { path = "./mono_core" }
+net_wasabi = { path = "./net/wasabi", optional = true }
+noli = { git = "https://github.com/hikalium/wasabi.git", branch = "for_saba", optional = true }
