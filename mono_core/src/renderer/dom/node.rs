@@ -117,6 +117,12 @@ impl Node {
     }
 }
 
+impl PartialEq for Node {
+    fn eq(&self, other: &Self) -> bool {
+        self.kind == other.kind
+    }
+}
+
 #[derive(Debug, Clone)]
 pub enum NodeKind {
     /// https://dom.spec.whatwg.org/#interface-document
@@ -125,6 +131,19 @@ pub enum NodeKind {
     Element(Element),
     /// https://dom.spec.whatwg.org/#interface-text
     Text(String),
+}
+
+impl PartialEq for NodeKind {
+    fn eq(&self, other: &Self) -> bool {
+        match &self {
+            NodeKind::Document => matches!(other, NodeKind::Document),
+            NodeKind::Element(e1) => match &other {
+                NodeKind::Element(e2) => e1.kind == e2.kind,
+                _ => false,
+            },
+            NodeKind::Text(_) => matches!(other, NodeKind::Text(_)),
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -160,6 +179,13 @@ pub enum ElementKind {
     Script,
     /// https://html.spec.whatwg.org/multipage/semantics.html#the-body-element
     Body,
+    /// https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element
+    P,
+    /// https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
+    H1,
+    H2,
+    /// https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
+    A,
 }
 
 impl FromStr for ElementKind {
@@ -172,6 +198,10 @@ impl FromStr for ElementKind {
             "style" => Ok(ElementKind::Style),
             "script" => Ok(ElementKind::Script),
             "body" => Ok(ElementKind::Body),
+            "p" => Ok(ElementKind::P),
+            "h1" => Ok(ElementKind::H1),
+            "h2" => Ok(ElementKind::H2),
+            "a" => Ok(ElementKind::A),
             _ => Err(format!("unimplemented element name {:?}", s)),
         }
     }
