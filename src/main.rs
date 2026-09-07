@@ -34,11 +34,8 @@ fn main() -> u64 {
     let response =
         HttpResponse::new(TEST_HTTP_RESPONSE.to_string()).expect("failed to parse http response");
     let page = browser.borrow().current_page();
-    let dom_string = page.borrow_mut().receive_response(response);
+    page.borrow_mut().receive_response(response);
 
-    for log in dom_string.lines() {
-        println!("{}", log);
-    }
     0
 }
 
